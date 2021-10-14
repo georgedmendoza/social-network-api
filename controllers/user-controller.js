@@ -51,9 +51,38 @@ const userController = {
     },
 
     // Update user
-
+    updateUserByID({ params, body }, res) {
+        // new:true returns updated data
+        // runValidators:true validates new input data 
+        User.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true})
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'no USER with that ID found!' });
+                return;
+            }
+            res.json(dbUserData)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).json(err);
+        });
+    },
 
     // Delete user
+    deleteUserById({ params }, res ) {
+        User.findOneAndDelete({ _id: params.id})
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'no USER with that ID found!' });
+                return;
+            }
+            res.json(dbUserData)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).json(err);
+        });
+    }
 }
 
 
