@@ -4,9 +4,10 @@ const {
     createUser
 } = require('../../controllers/user-controller')
 
-router 
-    .route(createUser)
+router
+    .route('/')
+    .post(createUser);
 
 
 
-module.export = router
+module.exports = router;
