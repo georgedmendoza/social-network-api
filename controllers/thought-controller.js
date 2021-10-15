@@ -99,6 +99,47 @@ const thoughtController = {
         });
     },
 
+    // create a reation
+    addReaction({ params, body }, res) {
+        console.log(body);
+        Thought.findOneAndUpdate(
+            { _id: params.thougthId },
+            { $push: {reactions: body } },
+            {new: true, runValidators: true}
+        )
+        .then(dbThoughtData => {
+            if (!dbThoughtData) {
+                res.status(404).json({ message: 'no THOUGHT with that ID found!' });
+                return;
+            }
+            res.json(dbThoughtData)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).json(err);
+        });
+    },
+
+    // delete a reation
+    deleteReaction({ params, body }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.thougthId },
+            { $pull: {reactions: { reactionId: params.reactionId } } },
+            {new: true}
+        )
+        .then(dbThoughtData => {
+            if (!dbThoughtData) {
+                res.status(404).json({ message: 'no REACTION with that ID found!' });
+                return;
+            }
+            res.json(dbThoughtData)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).json(err);
+        });
+    }
+
 };
 
 
