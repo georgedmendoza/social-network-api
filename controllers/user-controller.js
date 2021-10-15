@@ -11,7 +11,7 @@ const userController = {
     getAllUser(req,res) {
         User.find({})
         .populate({
-            // allos to get actual thoughts text
+            // allso to get actual thoughts text
             path: 'thoughts',
             // - sign exlucludes, so v field is not include in output
             select: '-__v'
@@ -90,7 +90,7 @@ const userController = {
             { _id: params.userId },
             // $push add to friends array
             { $push: {friends: params.friendId } },
-            { new: true}
+            { new: true, runValidators: true}
         )
         .then(dbUserData => {
             if (!dbUserData) {
