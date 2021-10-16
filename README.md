@@ -1,7 +1,7 @@
 # social-network-api
 
 ## Description 
-  This application was created to build an API for a social network using express, mongoose, moment, JavaScript, and node.Upon visiting the APIs the user can follow the git add CRUD method (Cread, Read, Update, Delete) for users, thought, and reaction.
+  This application was created to build an API for a social network using express, mongoose, moment, JavaScript, and node. Upon visiting the APIs the user can follow the git add CRUD method (Cread, Read, Update, Delete) for users, thought, and reaction.
 
    Below is a link to demonstrate how the application worksgit 
 
